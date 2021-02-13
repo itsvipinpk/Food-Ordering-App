@@ -1,0 +1,39 @@
+.restaurant-details-section{
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    background-color: rgb(231, 231, 231)
+}
+.restaurant-details{
+    margin-left: 10px;
+}
+.restaurant-rating{
+   
+     display: flex;
+     align-items: baseline;
+ 
+ }
+ 
+.restaurant-rating-section{
+    display: flex;
+    flex-direction: column;
+}
+.restaurant-rating-cost-section{
+    display: flex;
+    align-items: center;
+    
+  
+}
+
+.restaurant-avg-cost-section{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+   
+}
+.restaurant-avg-cost{
+    display: flex;
+    align-items: baseline;
+   
+    
+}
