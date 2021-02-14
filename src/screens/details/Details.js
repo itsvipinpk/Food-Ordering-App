@@ -6,19 +6,46 @@ import Header from '../../common/header/Header';
 //importing the css file of the Details page
 import './Details.css';
 
-
-import '../../../node_modules/font-awesome/css/font-awesome.min.css'
 import Typography from "@material-ui/core/Typography";
-import { withStyles, CardContent } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 
+import Divider from "@material-ui/core/Divider";
+import IconButton from "@material-ui/core/IconButton";
+import AddIcon from "@material-ui/icons/Add";
+
+import Fade from "@material-ui/core/Fade";
+
+// Custom Styles 
 const styles = (theme) => ({
-
+    textRatingCost: {
+        //Style for the Text of the Rating and cost.
+        "text-overflow": "clip",
+        width: "145px",
+        color: "grey",
+    },
     restaurantName: {
+        //Style for the Restaurant name.
         padding: "8px 0px 8px 0px",
         "font-size": "30px",
+    },
+    restaurantCategory: {
+        //Style for the Restaurant Category.
+        padding: "8px 0px 8px 0px",
+    },
+    avgCost: {
+        //Style for the Average cost.
+        "padding-left": "5px",
+    },
+    itemPrice: {
+        //Style for the Item prices.
+        "padding-left": "5px",
+    },
+    addButton: {
+        //Style for the add Button.
+        "margin-left": "25px",
     }
-})
-
+   
+});
 
 class Details extends Component {
     constructor() {
@@ -26,6 +53,12 @@ class Details extends Component {
         this.state = {
             restaurantDetails: [],
             categories: [],
+            cartItems: [],
+            totalAmount: 0,
+            snackBarOpen: false,
+            snackBarMessage: "",
+            transition: Fade,
+            badgeVisible: false,
         }
     }
 
@@ -61,10 +94,11 @@ class Details extends Component {
 
                 let categories = response.categories;
                 that.setState({
+                    ...this.state,
                     restaurantDetails: restaurantDetails,
-                    categories: categoriesList,
+                    categories: categories,
                 });
-
+                console.log(categories)
 
             }
         })
@@ -118,23 +152,6 @@ class Details extends Component {
                         >
                             {this.state.restaurantDetails.categoriesName}
                         </Typography>
-
-
-                        {/* <div className="rating-and-avg-section">
-                            
-                            <div className="restaurant-rating-section">
-                                <Typography variant='body1'>
-                                    <i className="fa fa-star"></i> {this.state.restaurantDetails.rating} ({this.state.restaurantDetails.number_customers_rated})
-                                                </Typography>
-                            </div>
-                           
-                            <div className="restaurant-avg-price-section">
-                                <Typography variant='body1'>
-                                    <i className="fa fa-inr" aria-hidden="true"></i>{this.state.restaurantDetails.average_price} for two
-                                            </Typography>
-                            </div>
-                        </div> */}
-
                         <div className="restaurant-rating-cost-section">
 
                             <div className="restaurant-rating-section">
@@ -153,13 +170,13 @@ class Details extends Component {
                                     component="p"
 
                                 >
-                                    AVERAGE RATING BY
+                                    AVERAGE RATING BY{" "}
                                     {
                                         <span className="restaurant-NoOfCustomerRated">
                                             {this.state.restaurantDetails.noOfCustomerRated}
                                         </span>
-                                    }
-                                     CUSTOMERS
+                                    }{" "}
+                                      CUSTOMERS
                                      </Typography>
                             </div>
                             <div className="restaurant-avg-cost-section">
@@ -168,7 +185,7 @@ class Details extends Component {
                                     <Typography
                                         variant="subtitle1"
                                         component="p"
-                                     
+
                                     >
                                         {this.state.restaurantDetails.avgCost}
                                     </Typography>
@@ -176,7 +193,7 @@ class Details extends Component {
                                 <Typography
                                     variant="caption"
                                     component="p"
-              
+
                                 >
                                     AVERAGE COST FOR TWO PEOPLE
                                     </Typography>
@@ -187,10 +204,78 @@ class Details extends Component {
 
                 </div>
 
+                {/* Menu and Cart Card Container */}
+                <div className="menu-details-cart-container">
 
-            </div>
+                    {/* menu -section */}
+                    <div className="menu-details">
+
+                        {/* Iterating for each category in the categories array to display each category */}
+                        {this.state.categories.map((category) => (
+                            <div key={category.id}>
+                                <Typography variant="overline" component="p"
+                                    className={classes.categoryName}
+                                >
+                                    {category.category_name}
+                                </Typography>
+
+                                <Divider />
+
+                                {/* Iterating over each item to display each items in the category. */}
+                                {category.item_list.map((item) => (
+                                    <div className="menu-item-container" key={item.id}>
+                                        {
+                                            item.item_type === "NON_VEG" ?
+                                                <i class="fa fa-circle" aria-hidden="true" style={{ color: "#BE4A47" }}></i>
+                                                :
+                                                <i class="fa fa-circle" aria-hidden="true" style={{ color: "#5A9A5B" }}></i>
+
+                                        }
+
+
+
+                                        <Typography variant="subtitle1" component="p" className={classes.menuItemName}>
+
+                                            {item.item_name[0].toUpperCase() + item.item_name.slice(1)}
+
+                                        </Typography>
+
+                                        <div className="item-price">
+
+                                            <i className="fa fa-inr" aria-hidden="true"></i>
+
+                                            <Typography variant="subtitle1" component="p" className={classes.itemPrice}  >
+                                                {item.price.toFixed(2)}
+                                            </Typography>
+
+                                        </div>
+
+
+                                        <IconButton
+                                            className={classes.addButton}
+                                            aria-label="add"
+                                            onClick={() => this.itemAddButtonClickHandler(item)}
+                                        >
+                                            <AddIcon />
+                                        </IconButton>
+
+
+                                    </div>
+                                ))}
+
+
+                            </div>
+                        ))}
+                    </div>
+
+
+
+                </div>
+
+            </div >
         )
     }
 }
 
-export default Details;
+
+export default withStyles(styles)(Details);
