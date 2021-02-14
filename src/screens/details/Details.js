@@ -27,7 +27,7 @@ import Fade from "@material-ui/core/Fade";
 // Custom Styles 
 const styles = (theme) => ({
 
-    
+
     textRatingCost: {
         //Style for the Text of the Rating and cost.
         "text-overflow": "clip",
@@ -110,7 +110,7 @@ class Details extends Component {
             snackBarOpen: false,
             snackBarMessage: "",
             transition: Fade,
-            badgeVisible: false,
+            badgeNotVisible: false,
         }
     }
 
@@ -150,7 +150,7 @@ class Details extends Component {
                     restaurantDetails: restaurantDetails,
                     categories: categories,
                 });
-              
+
             }
         })
         xhrRestaurantDetails.open("GET", this.props.baseUrl + "restaurant/" + this.props.match.params.id);
@@ -284,23 +284,58 @@ class Details extends Component {
             return;
         }
         this.setState({
-            ...this.state,
+           
             snackBarMessage: "",
             snackBarOpen: false,
         });
     };
-   
+  
     //to hide the badge when the modal is opened
     changeBadgeVisibility = () => {
 
-        let visible=this.state.badgeVisible;           
+       
         this.setState({
-          ...this.state,
-          badgeVisible: !visible,
+            badgeNotVisible: !this.state.badgeNotVisible
         });
-      };
+    };
 
     
+
+    //this method called when when checkout button is clicked
+    //if the cart does not contain any menu-item and a customer (logged in / non-logged in)
+    //displays the message “Please add an item to your cart!”
+    //if the cart contains at least one menu item and user is NOT logged in
+    //displays  the message “Please login first!”
+    //if the cart contains at least one menu item and user is logged in
+    //redirects to Checkout page
+    checkOutButtonClickHandler = () => {
+        let cartItems = this.state.cartItems;
+        let isLoggedIn = sessionStorage.getItem("access-token") == null ? false : true;
+        if (cartItems.length === 0) {
+            this.setState({
+                ...this.state,
+                snackBarOpen: true,
+                snackBarMessage: "Please add an item to your cart!",
+            });
+        }
+        else if (isLoggedIn === false) {
+            this.setState({
+                ...this.state,
+                snackBarOpen: true,
+                snackBarMessage: "Please login first!",
+            });
+        }
+        else {
+            this.props.history.push({
+                pathname: "/checkout",
+                cartItems: this.state.cartItems,
+                restaurantDetails: this.state.restaurantDetails,
+            });
+        }
+
+    };
+
+
     render() {
 
         const { classes } = this.props;
@@ -477,7 +512,7 @@ class Details extends Component {
                                         badgeContent={this.state.cartItems.length}
                                         color="primary"
                                         showZero={true}
-                                        invisible={this.state.badgeVisible}
+                                        invisible={this.state.badgeNotVisible}
                                         className={classes.badge}
                                     >
                                         <ShoppingCartIcon />
@@ -608,7 +643,7 @@ class Details extends Component {
 
             </div >
         )
-    }
+    };
 }
 
 
