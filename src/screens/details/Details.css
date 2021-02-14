@@ -83,7 +83,11 @@
     align-items: baseline;
     justify-content: space-between;
 }
-
+.quantity-container{
+    display: flex;
+   
+    align-items: center;
+}
 
 /* responsive screen */
 
