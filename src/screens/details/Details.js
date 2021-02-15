@@ -369,21 +369,27 @@ class Details extends Component {
                                 {this.state.restaurantDetails.name}
                             </Typography>
 
-                        </div>
+                        </div><br/>
                         <Typography
                             variant="subtitle1"
                             component="p"
 
                         >
                             {this.state.restaurantDetails.locality}
-                        </Typography>
+                        </Typography><br/>
                         <Typography
-                            variant="subtitle1"
+                            variant="subtitle2"
                             component="p"
 
                         >
-                            {this.state.restaurantDetails.categoriesName}
-                        </Typography>
+                            {
+                                    this.state.categories.map((category, index) => (
+
+                                        <span
+                                            key={category.id + "category"}>{category.category_name}{index < this.state.categories.length - 1 ? ", " : " "} </span>
+                                    ))
+                                }
+                        </Typography><br/>
                         <div className="restaurant-rating-cost-section">
 
                             <div className="restaurant-rating-section">
@@ -402,7 +408,7 @@ class Details extends Component {
                                     component="p"
 
                                 >
-                                    AVERAGE RATING BY{" "}
+                                    AVERAGE RATING BY{" "}<br/>
                                     {
                                         <span className="restaurant-NoOfCustomerRated">
                                             {this.state.restaurantDetails.noOfCustomerRated}
@@ -581,7 +587,7 @@ class Details extends Component {
                                 ))}
                                 <div className="total-amount-container">
                                     <Typography variant="subtitle2" component="p" className={classes.totalAmount}>
-                                        TOTAL amount
+                                        TOTAL AMOUNT
                                           </Typography>
 
 
