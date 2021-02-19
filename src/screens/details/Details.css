@@ -15,19 +15,17 @@
  }
  
 .restaurant-rating-section{
-    display: flex;
-    flex-direction: column;
+    flex: 50%;
 }
 .restaurant-rating-cost-section{
     display: flex;
-    align-items: center;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
       }
 
 .restaurant-avg-cost-section{
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
-
+    flex: 50%;
 }
 .restaurant-avg-cost{
     display: flex;
@@ -150,5 +148,8 @@
     .restaurant-avg-cost-container{
         margin-left: 350px;
     }
+}
+.badge {
+    z-index: 0;
 }
 
