@@ -519,7 +519,7 @@ class Details extends Component {
                                         color="primary"
                                         showZero={true}
                                         invisible={this.state.badgeNotVisible}
-                                        className={classes.badge}
+                                        className="badge"
                                     >
                                         <ShoppingCartIcon />
                                     </Badge>
