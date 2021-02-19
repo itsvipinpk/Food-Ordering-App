@@ -1,0 +1,154 @@
+.restaurant-details-section{
+    display: flex;
+    align-items: center;
+    padding: 25px;
+    background-color: rgb(231, 231, 231)
+}
+.restaurant-details{
+    margin-left: 10px;
+}
+.restaurant-rating{
+   
+     display: flex;
+     align-items: baseline;
+ 
+ }
+ 
+.restaurant-rating-section{
+    display: flex;
+    flex-direction: column;
+}
+.restaurant-rating-cost-section{
+    display: flex;
+    align-items: center;
+      }
+
+.restaurant-avg-cost-section{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+
+}
+.restaurant-avg-cost{
+    display: flex;
+    align-items: baseline;   
+}
+.restaurant-NoOfCustomerRated{
+    font-weight: bold;
+}
+
+/* styling for items */
+.menu-details-cart-container{
+    display: flex;
+    padding: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    justify-content: space-between;
+}
+
+.item-price{
+    display:flex;
+    align-items: baseline;
+    margin-left: auto;
+}
+#cart-item-price{
+    color: grey;
+}
+#minus-button{
+    margin-left:auto;
+}
+#cart-menu-item-name{
+    width:150px;
+    margin-left: 40px;
+    color: grey;
+}
+.menu-item-container{
+    display: flex;
+    align-items: center;
+}
+.cart-menu-item-container{
+    display: flex;
+    align-items: center;
+
+}
+.total-price{
+    display:flex;
+    align-items: baseline;
+}
+#cart-total-price{
+    font-weight: bold;
+}
+.total-amount-container{
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+.quantity-container{
+    display: flex;
+   
+    align-items: center;
+}
+
+/* responsive screen */
+
+
+/* Responsive code for the smaller screen size */
+@media screen and (max-width:600px){
+    .restaurant-details-container{
+        flex-direction: column;
+    }
+    .restaurant-details{
+        text-align: center;
+    }
+    .restaurant-avg-cost-container{
+        margin-left: auto;
+    }
+    .restaurant-rating{
+        align-self: center;
+
+    }
+    .restaurant-avg-cost{
+        place-content: center;
+    }
+
+    /* cart */
+    .menu-details-cart-container{
+        flex-direction: column;
+        margin-left: 16px;
+        margin-right: 16px;
+        padding: 0px;
+ 
+     }
+     .menu-details{
+         width:100%;
+     }
+     .my-cart{
+         width: 100%;
+         padding-top: 30px;
+     }
+   
+
+}
+
+/* Responsive code for the smaller screen size */
+@media screen and (min-width:600px){
+    .restaurant-details{
+        margin-left: 75px;
+        width: 100%;
+    }
+    .menu-details{
+        width:45%;
+   }
+   
+       .my-cart{
+           width: 45%;
+       }
+}
+
+/* Responsive code for the smaller screen size */
+@media screen and (min-width:1000px){
+    .restaurant-avg-cost-container{
+        margin-left: 350px;
+    }
+}
+
