@@ -567,14 +567,19 @@ class Checkout extends Component {
         })
         let that = this;
         let xhrOrder = new XMLHttpRequest();
+        let orderLists = new Map();
         xhrOrder.addEventListener("readystatechange", function () {
             if (xhrOrder.readyState === 4) {
                 if (xhrOrder.status === 201) {
                     let responseOrder = JSON.parse(xhrOrder.responseText)
+                    /* based on the discussion with mentor changing the response uuid to an integer value, since in problem statement screenshot order id is integer !!
+                    Since no specific validation is mentioned for relationship between integer order id and response uuid, logic is implemted as below.
+                     */
+                    orderLists.set(responseOrder.id,Math.floor(Math.random() * 1000));
                     that.setState({
                         ...that.state,
                         snackBarOpen: true,
-                        snackBarMessage: "Order placed successfully! Your order ID is " + responseOrder.id,
+                        snackBarMessage: "Order placed successfully! Your order ID is " + orderLists.get(responseOrder.id),
                     });
                 } else {
                     that.setState({
@@ -692,11 +697,11 @@ class Checkout extends Component {
                                                                 {this.state.addresses.map(address => (
                                                                     <GridListTile className={classes.gridListTile} key={address.id} style={{ borderColor: address.selected ? "rgb(224,37,96)" : "white" }}>
                                                                         <div className="grid-list-tile-container">
-                                                                            <Typography variant="body1" component="p">{address.flatBuildingName}</Typography>
-                                                                            <Typography variant="body1" component="p">{address.locality}</Typography>
-                                                                            <Typography variant="body1" component="p">{address.city}</Typography>
-                                                                            <Typography variant="body1" component="p">{address.state.state_name}</Typography>
-                                                                            <Typography variant="body1" component="p">{address.pincode}</Typography>
+                                                                            <Typography variant="subtitle2" component="p">{address.flatBuildingName}</Typography>
+                                                                            <Typography variant="subtitle2" component="p">{address.locality}</Typography>
+                                                                            <Typography variant="subtitle2" component="p">{address.city}</Typography>
+                                                                            <Typography variant="subtitle2" component="p">{address.state.state_name}</Typography>
+                                                                            <Typography variant="subtitle2" component="p">{address.pincode}</Typography>
                                                                             <IconButton className={classes.addressCheckButton} onClick={() => this.addressSelectedClickHandler(address.id)}>
                                                                                 <CheckCircleIcon style={{ color: address.selected ? "green" : "grey" }} />
                                                                             </IconButton>
@@ -705,7 +710,7 @@ class Checkout extends Component {
                                                                 ))}
                                                             </GridList>
                                                             :
-                                                            <Typography variant="body1" component="p">There are no saved addresses! You can save an address using the 'New Address' tab or using your ‘Profile’ menu option.</Typography>
+                                                            <Typography variant="body1" component="p" style={{margin: 10, marginBottom: 200}}>There are no saved addresses! You can save an address using the 'New Address' tab or using your ‘Profile’ menu option.</Typography>
                                                         }
                                                     </TabContainer>
                                                 }
