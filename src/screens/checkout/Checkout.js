@@ -705,7 +705,7 @@ class Checkout extends Component {
                                                                 ))}
                                                             </GridList>
                                                             :
-                                                            <Typography variant="body1" component="p">There are no saved addresses! You can save an address using the 'New Address' tab or using your ‘Profile’ menu option.</Typography>
+                                                            <Typography variant="body1" component="p" style={{margin: 10, marginBottom: 200}}>There are no saved addresses! You can save an address using the 'New Address' tab or using your ‘Profile’ menu option.</Typography>
                                                         }
                                                     </TabContainer>
                                                 }

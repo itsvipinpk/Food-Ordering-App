@@ -406,6 +406,7 @@ class Details extends Component {
                                 <Typography
                                     variant="caption"
                                     component="p"
+                                    style={{ color: 'grey' }}
 
                                 >
                                     AVERAGE RATING BY{" "}<br/>
@@ -431,6 +432,7 @@ class Details extends Component {
                                 <Typography
                                     variant="caption"
                                     component="p"
+                                    style={{ color: 'grey' }}
 
                                 >
                                     AVERAGE COST FOR TWO PEOPLE
@@ -556,7 +558,7 @@ class Details extends Component {
                                                 aria-label="remove"
                                                 onClick={() => this.cartMinusButtonClickHandler(cartItem)}
                                             >
-                                                <i class="fa fa-minus" aria-hidden="true" style={{ color: "black" }}></i>
+                                                <i className="fa fa-minus" aria-hidden="true" style={{ color: "black" }}></i>
                                             </IconButton>
 
                                             <Typography variant="subtitle1" component="p" className={classes.itemQuantity}>
@@ -568,7 +570,7 @@ class Details extends Component {
                                                 aria-label="add"
                                                 onClick={() => this.cartAddButtonClickHandler(cartItem)}
                                             >
-                                                <i class="fa fa-plus" aria-hidden="true" style={{ color: "black" }} ></i>
+                                                <i className="fa fa-plus" aria-hidden="true" style={{ color: "black" }} ></i>
 
                                             </IconButton>
                                         </div>
