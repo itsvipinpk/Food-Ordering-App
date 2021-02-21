@@ -67,7 +67,7 @@ class Home extends Component {
                     <Header showSearchBox={true} searchHandler={this.searchHandler} baseUrl={this.props.baseUrl} />
                     {/* if no restaurants found with the entered name displays the No restaurant with the given name. */}
                     {this.state.restaurants === null && this.state.loading === false ?
-                        <Typography variant="h5"><br/><p>No restaurant with the given name.</p></Typography> :
+                        <div style={{paddingLeft:"40px"}}><Typography variant="h5"><br/><p>No restaurant with the given name.</p></Typography></div> :
                         <GridList cols={this.state.cards} cellHeight="auto">
                             {this.state.restaurants.map(restaurant => (
                                 <GridListTile key={'restaurant' + restaurant.id} >
