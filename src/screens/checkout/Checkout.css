@@ -43,7 +43,7 @@
 
 /* Style for the grid */
 .grid-list-tile-container{
-    padding:16px 8px 16px 16px;
+    padding:16px 8px 16px 8px;
 }
 
 /* Style to hide the element */
