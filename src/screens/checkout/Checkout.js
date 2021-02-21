@@ -567,19 +567,17 @@ class Checkout extends Component {
         })
         let that = this;
         let xhrOrder = new XMLHttpRequest();
-        let orderLists = new Map();
         xhrOrder.addEventListener("readystatechange", function () {
             if (xhrOrder.readyState === 4) {
                 if (xhrOrder.status === 201) {
                     let responseOrder = JSON.parse(xhrOrder.responseText)
-                    /* based on the discussion with mentor changing the response uuid to an integer value, since in problem statement screenshot order id is integer !!
-                    Since no specific validation is mentioned for relationship between integer order id and response uuid, logic is implemted as below.
+                    /*  
+                    reverting order id to UUID as in problem statement as TA confirmation in discussion forum.
                      */
-                    orderLists.set(responseOrder.id,Math.floor(Math.random() * 1000));
                     that.setState({
                         ...that.state,
                         snackBarOpen: true,
-                        snackBarMessage: "Order placed successfully! Your order ID is " + orderLists.get(responseOrder.id),
+                        snackBarMessage: "Order placed successfully! Your order ID is " + responseOrder.id,
                     });
                 } else {
                     that.setState({
