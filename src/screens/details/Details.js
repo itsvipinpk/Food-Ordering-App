@@ -435,7 +435,8 @@ class Details extends Component {
                                     style={{ color: 'grey' }}
 
                                 >
-                                    AVERAGE COST FOR TWO PEOPLE
+                                    AVERAGE COST FOR<br/> 
+                                    TWO PEOPLE
                                     </Typography>
                             </div>
                         </div>
