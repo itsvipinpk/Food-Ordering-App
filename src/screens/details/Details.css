@@ -15,7 +15,7 @@
  }
  
 .restaurant-rating-section{
-    flex: 50%;
+    flex: 20%;
 }
 .restaurant-rating-cost-section{
     display: flex;
