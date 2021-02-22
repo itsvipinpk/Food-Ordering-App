@@ -92,13 +92,13 @@
 
 /* Responsive code for the smaller screen size */
 @media screen and (max-width:600px){
-    .restaurant-details-container{
+    .restaurant-details-section{
         flex-direction: column;
     }
     .restaurant-details{
         text-align: center;
     }
-    .restaurant-avg-cost-container{
+    .restaurant-avg-cost-section{
         margin-left: auto;
     }
     .restaurant-rating{
@@ -145,7 +145,7 @@
 
 /* Responsive code for the smaller screen size */
 @media screen and (min-width:1000px){
-    .restaurant-avg-cost-container{
+    .restaurant-avg-cost-section{
         margin-left: 350px;
     }
 }
